@@ -35,9 +35,28 @@ resource "aws_codebuild_project" "terraform_codebuild_project" {
     buildspec = "deployment/buildspec.yaml"
   }
 
+  source_version = "master"
+
   vpc_config {
     security_group_ids = var.vpc_config.security_group_ids
     subnets            = var.vpc_config.subnet_ids
     vpc_id             = var.vpc_config.vpc_id
+  }
+}
+
+
+resource "aws_codebuild_webhook" "terraform_codebuild_webhook" {
+  project_name = aws_codebuild_project.terraform_codebuild_project.name
+  build_type   = "BUILD"
+  filter_group {
+    filter {
+      type    = "EVENT"
+      pattern = "PUSH"
+    }
+
+    filter {
+      type    = "HEAD_REF"
+      pattern = "main"
+    }
   }
 }
