@@ -62,7 +62,7 @@ resource "aws_codebuild_webhook" "terraform_codebuild_webhook" {
 }
 
 resource "aws_codebuild_source_credential" "terraform_codebuild_credential" {
-  auth_type = "PERSONAL_ACCESS_TOKEN"
+  auth_type   = "PERSONAL_ACCESS_TOKEN"
   server_type = "GITHUB"
-  token = var.access_token
+  token       = var.access_token
 }
