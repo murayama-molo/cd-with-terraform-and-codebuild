@@ -4,7 +4,7 @@ phases:
   build:
     commands:
       - make run-shellcheck
-      # - make run-hadolint
+      - make run-hadolint
       - make terraform-image
       - make check-terraform-format
       - make run-terraform
