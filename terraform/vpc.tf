@@ -14,5 +14,20 @@ module "vpc" {
 
   manage_default_security_group  = true
   default_security_group_ingress = []
-  default_security_group_egress  = []
+  default_security_group_egress = [
+    {
+      description = "http"
+      cidr_blocks = "0.0.0.0/0"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+    },
+    {
+      description = "https"
+      cidr_blocks = "0.0.0.0/0"
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+    },
+  ]
 }
