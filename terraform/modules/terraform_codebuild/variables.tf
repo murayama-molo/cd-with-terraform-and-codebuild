@@ -26,3 +26,9 @@ variable "vpc_config" {
   nullable    = false
   description = "To specify VPC configuration."
 }
+
+variable "access_token" {
+  type        = string
+  nullable    = false
+  description = "To specify an access token to the repository."
+}

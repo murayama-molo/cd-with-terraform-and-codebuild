@@ -3,6 +3,7 @@ module "planning_terraform_project" {
   project_name           = "planning-terraform-on-${terraform.workspace}"
   terraform_should_apply = false
   pattern_of_branch_name = var.terraform_codebuild.pattern_of_branch_names.planning_terraform
+  access_token           = data.aws_ssm_parameter.access_token.value
   vpc_config = {
     security_group_ids = [module.vpc.default_security_group_id]
     subnet_ids         = module.vpc.private_subnets
@@ -15,6 +16,7 @@ module "applying_terraform_project" {
   project_name           = "applying-terraform-on-${terraform.workspace}"
   terraform_should_apply = true
   pattern_of_branch_name = var.terraform_codebuild.pattern_of_branch_names.applying_terraform
+  access_token           = data.aws_ssm_parameter.access_token.value
   vpc_config = {
     security_group_ids = [module.vpc.default_security_group_id]
     subnet_ids         = module.vpc.private_subnets
