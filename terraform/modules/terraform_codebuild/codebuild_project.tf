@@ -35,8 +35,6 @@ resource "aws_codebuild_project" "terraform_codebuild_project" {
     buildspec = "deployment/buildspec.yaml"
   }
 
-  source_version = "refs/heads/"
-
   vpc_config {
     security_group_ids = var.vpc_config.security_group_ids
     subnets            = var.vpc_config.subnet_ids
